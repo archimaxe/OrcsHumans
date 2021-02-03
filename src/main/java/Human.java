@@ -1,0 +1,27 @@
+public class Human extends Player{
+    public static final int LEARN_PROBABILITY = 30;
+    public static final int LEARN_HITPOINTS_COEF = 10;
+
+    public Human (String name, int health, int hitPoints){
+        super(name, health, hitPoints);
+    }
+    public boolean learnFrom(Human human){
+        //перенимаем опыт
+        if (prob(LEARN_PROBABILITY)){
+            System.out.println(this + " перенял опыт от " + human);
+            hitPoints += human.hitPoints/LEARN_HITPOINTS_COEF;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public void hit (Orc orc){
+        //будем бить орков
+        System.out.println(this + " vs " + orc);
+        orc.decreaseHealth(hitPoints);
+    }
+    @Override
+    public String toString(){
+        return "Альянс " + super.toString();
+    }
+}
